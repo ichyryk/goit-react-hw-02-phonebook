@@ -19,6 +19,17 @@ export default class App extends Component {
       number,
     };
 
+    const isAlreadySaved = name => {
+      return this.state.contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
+      );
+    };
+
+    if (isAlreadySaved(name)) {
+      alert(`${name} already exist!`);
+      return;
+    }
+
     this.setState(prevState => ({
       ...prevState,
       contacts: [...prevState.contacts, entry],
@@ -27,6 +38,12 @@ export default class App extends Component {
 
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
 
   getVisibleContacts = () => {
@@ -50,7 +67,10 @@ export default class App extends Component {
 
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList contacts={visibleContacts} />
+        <ContactList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </Wrapper>
     );
   }

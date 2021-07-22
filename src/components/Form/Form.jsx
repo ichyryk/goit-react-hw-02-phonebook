@@ -1,19 +1,6 @@
 import { Component } from 'react';
 import Button from '../Button/Button';
 import { CustomForm } from './Form.styled';
-// import styled from '@emotion/styled/macro';
-
-// function Form({ children, onSubmit }) {
-//   return (
-//     <CustomForm onSubmit={onSubmit}>
-//       <h3>Name</h3>
-//       {children}
-//       <Button text="Add contact" />
-//     </CustomForm>
-//   );
-// }
-
-// export default Form;
 
 export default class Form extends Component {
   state = {
